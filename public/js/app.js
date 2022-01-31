@@ -2056,7 +2056,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    taskId: Number
+    taskId: String
   },
   data: function data() {
     return {
@@ -38206,7 +38206,7 @@ var render = function () {
             _c(
               "button",
               { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-              [_vm._v("Submit")]
+              [_vm._v("更新")]
             ),
           ]
         ),
