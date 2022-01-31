@@ -1996,10 +1996,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      task: {}
+      task: {},
+      errors: null
     };
   },
   methods: {
@@ -2007,9 +2011,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post('/api/tasks', this.task).then(function (res) {
+        console.log("成功", res);
+
         _this.$router.push({
           name: 'task.list'
         });
+      })["catch"](function (error) {
+        _this.errors = error.response.data.errors;
+        console.log("失敗", error.response.data.errors.title[0]);
       });
     }
   }
@@ -38031,6 +38040,16 @@ var render = function () {
             ),
           ]
         ),
+        _vm._v(" "),
+        _vm.errors
+          ? _c(
+              "ul",
+              _vm._l(_vm.errors, function (error, index) {
+                return _c("li", { key: index }, [_vm._v(_vm._s(error[0]))])
+              }),
+              0
+            )
+          : _vm._e(),
       ]),
     ]),
   ])

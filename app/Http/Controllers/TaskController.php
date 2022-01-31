@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
 
 class TaskController extends Controller
 {
@@ -16,12 +17,19 @@ class TaskController extends Controller
     }
 
     public function store(Request $request) {
-        return Task::create($request->all());
+        $validatedData = $request->validate([
+            'title' => 'required|max:5',
+            'content' => 'required',
+            'person_in_change' => 'required'
+        ]);
+
+        Task::create($validatedData);
+
+        return ['message' => 'Task Created'];
     }
 
     public function update(Request $request, Task $task) {
         $task->update($request->all());
-        dd($task);
         return $task;
     }
 

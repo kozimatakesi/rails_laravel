@@ -17,6 +17,9 @@
                      </div>
                      <button type="submit" class="btn btn-primary">Submit</button>
                  </form>
+                 <ul v-if="errors">
+                     <li v-for="(error, index) in errors" :key="index">{{ error[0] }}</li>
+                 </ul>
              </div>
          </div>
      </div>
@@ -26,14 +29,20 @@
     export default {
         data: function () {
             return {
-                task: {}
+                task: {},
+                errors: null
             }
         },
         methods: {
             submit() {
                 axios.post('/api/tasks', this.task)
                     .then((res) => {
+                        console.log("成功",res);
                         this.$router.push({name: 'task.list'});
+                    })
+                    .catch((error) => {
+                        this.errors = error.response.data.errors;
+                        console.log("失敗", error.response.data.errors.title[0]);
                     });
             }
         }
