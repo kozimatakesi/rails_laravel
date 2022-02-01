@@ -17,7 +17,7 @@
                      </div>
                      <button type="submit" class="btn btn-primary">Submit</button>
                  </form>
-                 <ul v-if="errors">
+                 <ul v-if="errors" class="error">
                      <li v-for="(error, index) in errors" :key="index">{{ error[0] }}</li>
                  </ul>
              </div>

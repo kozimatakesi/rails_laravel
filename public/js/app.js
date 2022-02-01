@@ -2159,10 +2159,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.tasks = res.data;
       });
     },
-    deleteTask: function deleteTask(id) {
+    deleteTask: function deleteTask(task) {
       var _this2 = this;
 
-      axios["delete"]('/api/tasks/' + id).then(function (res) {
+      axios["delete"]('/api/tasks/' + task.id, task).then(function (res) {
         _this2.getTasks();
       });
     }
@@ -38044,6 +38044,7 @@ var render = function () {
         _vm.errors
           ? _c(
               "ul",
+              { staticClass: "error" },
               _vm._l(_vm.errors, function (error, index) {
                 return _c("li", { key: index }, [_vm._v(_vm._s(error[0]))])
               }),
@@ -38318,7 +38319,7 @@ var render = function () {
                   staticClass: "btn btn-danger",
                   on: {
                     click: function ($event) {
-                      return _vm.deleteTask(task.id)
+                      return _vm.deleteTask(task)
                     },
                   },
                 },

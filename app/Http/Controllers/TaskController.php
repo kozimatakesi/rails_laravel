@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
@@ -9,7 +10,7 @@ use App\Http\Requests\TaskRequest;
 class TaskController extends Controller
 {
     public function index() {
-        return Task::all();
+        return Task::where('status',1)->get();
     }
 
     public function show(Task $task) {
@@ -33,8 +34,10 @@ class TaskController extends Controller
         return $task;
     }
 
-    public function destroy(Task $task) {
-        $task->delete();
+    public function destroy(Request $request,Task $task) {
+        //Log::warning('いいい'.$task);
+        $task->where('id', $task->id)->update(['status' => 2]);
+         //$task->delete();
         return $task;
     }
 }

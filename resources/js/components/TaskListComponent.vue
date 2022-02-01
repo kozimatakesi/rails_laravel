@@ -29,7 +29,7 @@
                         </router-link>
                     </td>
                     <td>
-                        <button class="btn btn-danger" v-on:click="deleteTask(task.id)">Delete</button>
+                        <button class="btn btn-danger" v-on:click="deleteTask(task)">Delete</button>
                     </td>
                 </tr>
              </tbody>
@@ -51,8 +51,8 @@
                         this.tasks = res.data;
                     });
             },
-            deleteTask(id) {
-                axios.delete('/api/tasks/' + id)
+            deleteTask(task) {
+                axios.delete('/api/tasks/' + task.id, task )
                     .then((res) => {
                         this.getTasks();
                 });
