@@ -52,10 +52,16 @@
                     });
             },
             deleteTask(task) {
-                axios.delete('/api/tasks/' + task.id, task )
-                    .then((res) => {
-                        this.getTasks();
-                });
+                if(!window.confirm('本当に削除しますか？')){
+                    window.alert('キャンセルされました');
+                    return false;
+                } else {
+                    axios.delete('/api/tasks/' + task.id, task )
+                        .then((res) => {
+                            this.getTasks();
+                    });
+                    window.alert(`id:${task.id}を削除しました`);
+                }
             }
         },
         mounted() {

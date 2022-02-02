@@ -37,12 +37,10 @@
             submit() {
                 axios.post('/api/tasks', this.task)
                     .then((res) => {
-                        console.log("成功",res);
                         this.$router.push({name: 'task.list'});
                     })
                     .catch((error) => {
                         this.errors = error.response.data.errors;
-                        console.log("失敗", error.response.data.errors.title[0]);
                     });
             }
         }

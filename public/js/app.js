@@ -2011,14 +2011,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post('/api/tasks', this.task).then(function (res) {
-        console.log("成功", res);
-
         _this.$router.push({
           name: 'task.list'
         });
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
-        console.log("失敗", error.response.data.errors.title[0]);
       });
     }
   }
@@ -2162,9 +2159,15 @@ __webpack_require__.r(__webpack_exports__);
     deleteTask: function deleteTask(task) {
       var _this2 = this;
 
-      axios["delete"]('/api/tasks/' + task.id, task).then(function (res) {
-        _this2.getTasks();
-      });
+      if (!window.confirm('本当に削除しますか？')) {
+        window.alert('キャンセルされました');
+        return false;
+      } else {
+        axios["delete"]('/api/tasks/' + task.id, task).then(function (res) {
+          _this2.getTasks();
+        });
+        window.alert("id:".concat(task.id, "\u3092\u524A\u9664\u3057\u307E\u3057\u305F"));
+      }
     }
   },
   mounted: function mounted() {
