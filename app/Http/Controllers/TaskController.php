@@ -11,7 +11,7 @@ class TaskController extends Controller
 {
     public function index() {
         $user = \Auth::user();
-        if($user['id'] == '1') {
+        if($user['admin'] == '1') {
             return Task::where('status',1)->get();
         } else {
             return Task::where('status',1)->where('user_id', $user['id'])->get();
@@ -34,7 +34,7 @@ class TaskController extends Controller
         //return ['message' => 'Task Created'];
         $data = $request->all();
         $user = \Auth::user();
-        Task::insert([
+        Task::create([
             'title' => $data['title'],
             'content' => $data['content'],
             'person_in_change' => $data['person_in_change'],
