@@ -1,9 +1,13 @@
+import './bootstrap';
+import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HeaderComponent from './components/HeaderComponent';
 import TaskListComponent from './components/TaskListComponent';
 import TaskCreateComponent from './components/TaskCreateComponent';
 import TaskShowComponent from './components/TaskShowComponent';
 import TaskEditComponent from './components/TaskEditComponent';
+import Login from './components/Login';
+import store from './store';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -41,6 +45,11 @@ const router = new VueRouter({
       component: TaskEditComponent,
       props: true,
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
   ],
 });
 
@@ -51,4 +60,5 @@ Vue.component('header-component', HeaderComponent);
 const app = new Vue({
   el: '#app',
   router,
+  store,
 });
