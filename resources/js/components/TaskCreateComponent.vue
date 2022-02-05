@@ -3,6 +3,7 @@
          <div class="row justify-content-center">
              <div class="col-sm-6">
                  <form v-on:submit.prevent="submit">
+
                      <div class="form-group row">
                          <label for="title" class="col-sm-3 col-form-label">Title</label>
                          <input type="text" class="col-sm-9 form-control" id="title" v-model="task.title">
@@ -30,7 +31,7 @@
         data: function () {
             return {
                 task: {},
-                errors: null
+                errors: null,
             }
         },
         methods: {
@@ -43,6 +44,15 @@
                         this.errors = error.response.data.errors;
                     });
             }
-        }
+        },
+        computed: {
+            isLogin () {
+                return this.$store.getters['auth/check']
+            },
+            userid () {
+                return this.$store.getters['auth/userid']
+            }
+        },
+
     }
  </script>

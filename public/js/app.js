@@ -2191,6 +2191,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2209,6 +2210,14 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
       });
+    }
+  },
+  computed: {
+    isLogin: function isLogin() {
+      return this.$store.getters['auth/check'];
+    },
+    userid: function userid() {
+      return this.$store.getters['auth/userid'];
     }
   }
 });
@@ -57122,6 +57131,9 @@ var getters = {
   },
   username: function username(state) {
     return state.user ? state.user.name : '';
+  },
+  userid: function userid(state) {
+    return state.user ? state.user.id : '';
   }
 };
 var mutations = {

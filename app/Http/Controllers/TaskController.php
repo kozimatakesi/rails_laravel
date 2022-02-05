@@ -10,7 +10,12 @@ use App\Http\Requests\TaskRequest;
 class TaskController extends Controller
 {
     public function index() {
-        return Task::where('status',1)->get();
+        $user = \Auth::user();
+        if($user['id'] == '1') {
+            return Task::where('status',1)->get();
+        } else {
+            return Task::where('status',1)->where('user_id', $user['id'])->get();
+        }
     }
 
     public function show(Task $task) {
@@ -18,13 +23,23 @@ class TaskController extends Controller
     }
 
     public function store(Request $request) {
-        $validatedData = $request->validate([
-            'title' => 'required|max:5',
-            'content' => 'required',
-            'person_in_change' => 'required'
-        ]);
 
-        Task::create($validatedData);
+        // $validatedData = $request->validate([
+        //     'title' => 'required|max:5',
+        //     'content' => 'required',
+        //     'person_in_change' => 'required',
+        //     'user_id' => 'required'
+        // ]);
+        //Task::create($validatedData);
+        //return ['message' => 'Task Created'];
+        $data = $request->all();
+        $user = \Auth::user();
+        Task::insert([
+            'title' => $data['title'],
+            'content' => $data['content'],
+            'person_in_change' => $data['person_in_change'],
+            'user_id' => $user['id'],
+        ]);
 
         return ['message' => 'Task Created'];
     }
