@@ -10,8 +10,8 @@
                     <router-link v-bind:to="{name: 'task.create'}">
                         <button class="btn btn-success">ADD</button>
                     </router-link>
-                    <button class="button button--link" @click="logout">Logout</button>
-                    <span v-if="isLogin" class="navbar__item">
+                    <button class="btn btn-success" @click="logout">Logout</button>
+                    <span v-if="isLogin" class="navbar__item text-info">
                         {{ username }}
                     </span>
                 </div>
