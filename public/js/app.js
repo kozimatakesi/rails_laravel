@@ -56590,25 +56590,60 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   routes: [{
     path: '/tasks',
     name: 'task.list',
-    component: _components_TaskListComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _components_TaskListComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+    beforeEnter: function beforeEnter(to, from, next) {
+      if (!_store__WEBPACK_IMPORTED_MODULE_9__["default"].getters['auth/check']) {
+        next('/login');
+      } else {
+        next();
+      }
+    }
   }, {
     path: '/tasks/create',
     name: 'task.create',
-    component: _components_TaskCreateComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _components_TaskCreateComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
+    beforeEnter: function beforeEnter(to, from, next) {
+      if (!_store__WEBPACK_IMPORTED_MODULE_9__["default"].getters['auth/check']) {
+        next('/login');
+      } else {
+        next();
+      }
+    }
   }, {
     path: '/tasks/:taskId',
     name: 'task.show',
     component: _components_TaskShowComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
-    props: true
+    props: true,
+    beforeEnter: function beforeEnter(to, from, next) {
+      if (!_store__WEBPACK_IMPORTED_MODULE_9__["default"].getters['auth/check']) {
+        next('/login');
+      } else {
+        next();
+      }
+    }
   }, {
     path: '/tasks/:taskId/edit',
     name: 'task.edit',
     component: _components_TaskEditComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
-    props: true
+    props: true,
+    beforeEnter: function beforeEnter(to, from, next) {
+      if (!_store__WEBPACK_IMPORTED_MODULE_9__["default"].getters['auth/check']) {
+        next('/login');
+      } else {
+        next();
+      }
+    }
   }, {
     path: '/login',
     name: 'login',
-    component: _components_Login__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_Login__WEBPACK_IMPORTED_MODULE_8__["default"],
+    beforeEnter: function beforeEnter(to, from, next) {
+      if (_store__WEBPACK_IMPORTED_MODULE_9__["default"].getters['auth/check']) {
+        next('/tasks');
+      } else {
+        next();
+      }
+    }
   }]
 });
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
