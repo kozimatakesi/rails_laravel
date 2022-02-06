@@ -23,24 +23,22 @@ class TaskController extends Controller
     }
 
     public function store(Request $request) {
-
-        // $validatedData = $request->validate([
-        //     'title' => 'required|max:5',
-        //     'content' => 'required',
-        //     'person_in_change' => 'required',
-        //     'user_id' => 'required'
-        // ]);
-        //Task::create($validatedData);
-        //return ['message' => 'Task Created'];
         $data = $request->all();
         $user = \Auth::user();
-        Task::create([
+        $validatedData = $request->validate([
+            'title' => 'required|max:5',
+            'content' => 'required',
+            'person_in_change' => 'required',
+        ]);
+
+        $addUserIdData = ([
             'title' => $data['title'],
             'content' => $data['content'],
             'person_in_change' => $data['person_in_change'],
             'user_id' => $user['id'],
         ]);
 
+        Task::create($addUserIdData);
         return ['message' => 'Task Created'];
     }
 
