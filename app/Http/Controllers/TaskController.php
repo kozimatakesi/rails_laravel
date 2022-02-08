@@ -9,8 +9,10 @@ use App\Http\Requests\TaskRequest;
 
 class TaskController extends Controller
 {
+    // タスク一覧を表示するアクション
     public function index() {
         $user = \Auth::user();
+        // カラムadminが1の時(管理者権限)は全てのタスクを表示、それ以外は自分のタスクのみを表示
         if($user['admin'] == '1') {
             return Task::where('status',1)->get();
         } else {
@@ -18,10 +20,12 @@ class TaskController extends Controller
         }
     }
 
+    // タスクの詳細を表示するアクション
     public function show(Task $task) {
         return $task;
     }
 
+    // タスクを投稿するアクション
     public function store(Request $request) {
         $data = $request->all();
         $user = \Auth::user();
@@ -42,15 +46,16 @@ class TaskController extends Controller
         return ['message' => 'Task Created'];
     }
 
+    // タスクを更新するアクション
     public function update(Request $request, Task $task) {
         $task->update($request->all());
         return $task;
     }
 
+    // タスクを削除するアクション
     public function destroy(Request $request,Task $task) {
         //Log::warning('いいい'.$task);
         $task->where('id', $task->id)->update(['status' => 2]);
-         //$task->delete();
         return $task;
     }
 }
