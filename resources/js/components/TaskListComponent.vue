@@ -14,6 +14,9 @@
              </thead>
              <tbody>
                 <tr v-for="(task, index) in tasks" :key="index">
+                    <div v-if="task.caution == 2" class="table">
+                        <td>消してください</td>
+                    </div>
                     <th scope="row">{{ task.id }}</th>
                     <td>{{ task.title }}</td>
                     <td>{{ task.content }}</td>
@@ -31,6 +34,9 @@
                     <td>
                         <button class="btn btn-danger" v-on:click="deleteTask(task)">Delete</button>
                     </td>
+                    <td v-if="adminCheck == 1">
+                        <button class="btn btn-danger" v-on:click="cautionTask(task)">Caution</button>
+                    </td>
                 </tr>
              </tbody>
          </table>
@@ -42,6 +48,11 @@
         data: function () {
             return {
                 tasks: []
+            }
+        },
+        computed: {
+            adminCheck () {
+            return this.$store.getters['auth/adminCheck']
             }
         },
         methods: {
@@ -62,7 +73,14 @@
                     });
                     window.alert(`id:${task.id}を削除しました`);
                 }
-            }
+            },
+            cautionTask(task) {
+                window.alert('title: ' + task.title + 'の削除依頼を行いました');
+                axios.put('/api/tasks/' + task.id + '/caution', task)
+                    .then((res) => {
+                        this.getTasks();
+                    });
+            },
         },
         mounted() {
             this.getTasks();

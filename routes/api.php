@@ -17,6 +17,7 @@ Route::get('/tasks', 'TaskController@index');
 Route::post('/tasks', 'TaskController@store');
 Route::get('/tasks/{task}', 'TaskController@show');
 Route::put('/tasks/{task}', 'TaskController@update');
+Route::put('/tasks/{task}/caution', 'TaskController@caution');
 Route::delete('/tasks/{task}/', 'TaskController@destroy');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::post('/login', 'Auth\LoginController@login')->name('login');

@@ -58,4 +58,9 @@ class TaskController extends Controller
         $task->where('id', $task->id)->update(['status' => 2]);
         return $task;
     }
+
+    // 管理者権限のみ タスクに削除依頼をするアクション
+    public function caution(Request $request,Task $task) {
+        $task->where('id', $task->id)->update(['caution' => 2]);
+    }
 }

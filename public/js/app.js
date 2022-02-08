@@ -2357,11 +2357,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       tasks: []
     };
+  },
+  computed: {
+    adminCheck: function adminCheck() {
+      return this.$store.getters['auth/adminCheck'];
+    }
   },
   methods: {
     getTasks: function getTasks() {
@@ -2383,6 +2394,14 @@ __webpack_require__.r(__webpack_exports__);
         });
         window.alert("id:".concat(task.id, "\u3092\u524A\u9664\u3057\u307E\u3057\u305F"));
       }
+    },
+    cautionTask: function cautionTask(task) {
+      var _this3 = this;
+
+      window.alert('title: ' + task.title + 'の削除依頼を行いました');
+      axios.put('/api/tasks/' + task.id + '/caution', task).then(function (res) {
+        _this3.getTasks();
+      });
     }
   },
   mounted: function mounted() {
@@ -39617,6 +39636,12 @@ var render = function () {
         "tbody",
         _vm._l(_vm.tasks, function (task, index) {
           return _c("tr", { key: index }, [
+            task.caution == 2
+              ? _c("div", { staticClass: "table" }, [
+                  _c("td", [_vm._v("消してください")]),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
             _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(task.id))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(task.title))]),
@@ -39679,6 +39704,23 @@ var render = function () {
                 [_vm._v("Delete")]
               ),
             ]),
+            _vm._v(" "),
+            _vm.adminCheck == 1
+              ? _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function ($event) {
+                          return _vm.cautionTask(task)
+                        },
+                      },
+                    },
+                    [_vm._v("Caution")]
+                  ),
+                ])
+              : _vm._e(),
           ])
         }),
         0
@@ -57231,6 +57273,9 @@ var getters = {
   },
   userid: function userid(state) {
     return state.user ? state.user.id : '';
+  },
+  adminCheck: function adminCheck(state) {
+    return state.user ? state.user.admin : '';
   }
 };
 var mutations = {
