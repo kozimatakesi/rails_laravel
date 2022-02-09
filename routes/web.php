@@ -1,10 +1,6 @@
 <?php
 
-
-
-// Route::post('/login/guest',
-//     'Auth\LoginController@guestLogin')->name('guest_login');
-
+// どこにアクセスしても layouts/app.blade.php にアクセスさせるルーティング
 Route::get('/{any}', function() {
     return view('layouts.app');
 })->where('any', '.*');
