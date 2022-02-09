@@ -2363,6 +2363,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -39636,12 +39637,6 @@ var render = function () {
         "tbody",
         _vm._l(_vm.tasks, function (task, index) {
           return _c("tr", { key: index }, [
-            task.caution == 2
-              ? _c("div", { staticClass: "table" }, [
-                  _c("td", [_vm._v("消してください")]),
-                ])
-              : _vm._e(),
-            _vm._v(" "),
             _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(task.id))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(task.title))]),
@@ -39718,6 +39713,16 @@ var render = function () {
                       },
                     },
                     [_vm._v("Caution")]
+                  ),
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            task.caution == 2
+              ? _c("div", { staticClass: "bg-danger" }, [
+                  _vm._v("\n                    管理者から"),
+                  _c("br"),
+                  _vm._v(
+                    "\n                    削除依頼が来ています\n                "
                   ),
                 ])
               : _vm._e(),
