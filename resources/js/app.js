@@ -3,6 +3,7 @@ import Vue from 'vue';
 import HeaderComponent from './components/HeaderComponent';
 import store from './store';
 import router from './router';
+import App from './App.vue';
 
 require('./bootstrap');
 
@@ -22,4 +23,6 @@ new Vue({
   el: '#app',
   router,
   store,
+  components: { App },
+  template: '<App />',
 });
