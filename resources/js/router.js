@@ -5,6 +5,7 @@ import TaskCreateComponent from './components/TaskCreateComponent';
 import TaskShowComponent from './components/TaskShowComponent';
 import TaskEditComponent from './components/TaskEditComponent';
 import Login from './components/Login';
+import NoticeComponent from './components/NoticeComponent';
 import store from './store';
 
 Vue.use(VueRouter);
@@ -71,6 +72,11 @@ const routes = [
         next();
       }
     },
+  },
+  {
+    path: '/notice',
+    name: 'notice',
+    component: NoticeComponent,
   },
 ];
 

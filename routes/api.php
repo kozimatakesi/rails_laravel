@@ -20,4 +20,10 @@ Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 // ログアウト
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
 //Route::get('/user', fn() => Auth::user())->name('user');
+
+// 管理者のみ　お知らせ表示
+Route::get('/notices', 'NoticeController@index');
+// お知らせ作成
+Route::post('/notices', 'NoticeController@store');
