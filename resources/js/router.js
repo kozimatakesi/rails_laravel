@@ -78,7 +78,7 @@ const routes = [
     name: 'notice',
     component: NoticeComponent,
     beforeEnter(to, from, next) {
-      if (store.getters['auth/adminCheck']) {
+      if (store.getters['auth/adminCheck'] !== 1) {
         next('/tasks');
       } else {
         next();

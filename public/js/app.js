@@ -57473,7 +57473,7 @@ var routes = [{
   name: 'notice',
   component: _components_NoticeComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
   beforeEnter: function beforeEnter(to, from, next) {
-    if (_store__WEBPACK_IMPORTED_MODULE_8__["default"].getters['auth/adminCheck']) {
+    if (_store__WEBPACK_IMPORTED_MODULE_8__["default"].getters['auth/adminCheck'] !== 1) {
       next('/tasks');
     } else {
       next();
