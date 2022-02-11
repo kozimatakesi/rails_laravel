@@ -34,16 +34,7 @@
         data () {
             return {
                 task: {},
-                oldTask: {
-                    title: '',
-                    content: '',
-                    person_in_change: ''
-                },
-            }
-        },
-        watch: {
-            task: function(newVal, oldVal) {
-                this.oldTask = oldVal;
+                oldTask: {},
             }
         },
         methods: {
@@ -51,13 +42,12 @@
                 axios.get('/api/tasks/' + this.taskId)
                     .then((res) => {
                         this.task = res.data;
-                        console.log(this.oldTask);
+                        this.oldTask = res.data;
                     });
             },
             submit() {
                 axios.put('/api/tasks/' + this.taskId, this.task)
                     .then((res) => {
-                        console.log(this.oldTask);
                         axios.post('/api/notices/' + this.taskId, {
                                     headers: this.oldTask,
                                     data: this.task

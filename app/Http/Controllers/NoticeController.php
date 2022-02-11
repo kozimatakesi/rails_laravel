@@ -26,7 +26,9 @@ class NoticeController extends Controller
         if($data['headers'] == 'delete') {
             $comment = $caution.'削除しました';
         } else {
-            $comment = $caution.'更新しました';
+            $caution = $caution.'更新しました';
+            $content = 'content: '.$data['headers']['content'];
+            $comment = $caution.$content;
         }
         $noticeData = ([
             'user_id' => $user['id'],
