@@ -2351,8 +2351,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.put('/api/tasks/' + this.taskId, this.task).then(function (res) {
-        _this2.$router.push({
-          name: 'task.list'
+        console.log(res);
+        axios.post('/api/notices/' + _this2.taskId, _this2.task).then(function (res) {
+          _this2.$router.push({
+            name: 'task.list'
+          });
         });
       });
     }

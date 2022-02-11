@@ -14,12 +14,12 @@ class NoticeController extends Controller
     }
 
     public function store(Request $request,Task $task) {
-        Log::warning('ききき'.$request);
+        $data = $request->all();
         $user = \Auth::user();
         $noticeData = ([
             'user_id' => $user['id'],
-            'content_id' => $task['id'],
-            'notice' => '整備中',
+            'content_id' => $data['id'],
+            'notice' => '削除しました',
         ]);
         Notice::create($noticeData);
     }
