@@ -2207,8 +2207,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -39372,7 +39370,7 @@ var render = function () {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(notice.notice))]),
             _vm._v(" "),
-            _vm._m(1, true),
+            _c("td", [_vm._v(_vm._s(notice.updated_at))]),
           ])
         }),
         0
@@ -39395,16 +39393,8 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Notice")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Updated_at")]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Delete")]),
     ])
   },
 ]

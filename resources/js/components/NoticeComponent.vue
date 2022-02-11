@@ -8,7 +8,7 @@
                     <th scope="col">User_id</th>
                     <th scope="col">Content_id</th>
                     <th scope="col">Notice</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col">Updated_at</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,9 +17,7 @@
                     <td>{{ notice.user_id }}</td>
                     <td>{{ notice.content_id }}</td>
                     <td>{{ notice.notice }}</td>
-                    <td>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
+                    <td>{{ notice.updated_at }}</td>
                 </tr>
             </tbody>
         </table>

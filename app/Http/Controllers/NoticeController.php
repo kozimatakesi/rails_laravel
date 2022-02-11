@@ -10,16 +10,22 @@ use Log;
 class NoticeController extends Controller
 {
     public function index() {
-        return Notice::get()->all();
+        return Notice::latest('id')->get()->all();
     }
 
     public function store(Request $request,Task $task) {
         $data = $request->all();
         $user = \Auth::user();
-        if($data['headers'] == 'edit') {
-            $comment = '更新しました';
+        if($data['data']['caution'] == '2') {
+            $caution = '削除依頼のあったタスクを';
         } else {
-            $comment = '削除しました';
+            $caution = null;
+        }
+
+        if($data['headers'] == 'edit') {
+            $comment = $caution.'更新しました';
+        } else {
+            $comment = $caution.'削除しました';
         }
         $noticeData = ([
             'user_id' => $user['id'],
