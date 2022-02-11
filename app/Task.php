@@ -11,5 +11,6 @@ class Task extends Model
         'content',
         'person_in_change',
         'user_id',
+        'caution',
     ];
 }

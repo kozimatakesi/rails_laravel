@@ -48,7 +48,21 @@ class TaskController extends Controller
 
     // タスクを更新するアクション
     public function update(Request $request, Task $task) {
-        $task->update($request->all());
+        $data = $request->all();
+        $validatedData = $request->validate([
+            'title' => 'required|max:5',
+            'content' => 'required',
+            'person_in_change' => 'required',
+            'caution' => 'required',
+        ]);
+        $changeCautionData = ([
+            'title' => $data['title'],
+            'content' => $data['content'],
+            'person_in_change' => $data['person_in_change'],
+            'caution' => 1,
+        ]);
+        Log::debug(print_r($changeCautionData, true));
+        $task->update($changeCautionData);
         return $task;
     }
 
