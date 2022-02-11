@@ -70,8 +70,14 @@
                 } else {
                     axios.delete('/api/tasks/' + task.id, task )
                         .then((res) => {
-                            this.getTasks();
+                            console.log(res);
+                            console.log(task);
+                            axios.post('/api/notices/' + task.id , task)
+                                .then((res) => {
+                                    this.getTasks();
+                                })
                     });
+
                     window.alert(`id:${task.id}を削除しました`);
                 }
             },

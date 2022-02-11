@@ -2446,7 +2446,11 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       } else {
         axios["delete"]('/api/tasks/' + task.id, task).then(function (res) {
-          _this2.getTasks();
+          console.log(res);
+          console.log(task);
+          axios.post('/api/notices/' + task.id, task).then(function (res) {
+            _this2.getTasks();
+          });
         });
         window.alert("id:".concat(task.id, "\u3092\u524A\u9664\u3057\u307E\u3057\u305F"));
       }

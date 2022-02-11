@@ -26,4 +26,4 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 // 管理者のみ　お知らせ表示
 Route::get('/notices', 'NoticeController@index');
 // お知らせ作成
-Route::post('/notices', 'NoticeController@store');
+Route::post('/notices/{task}', 'NoticeController@store');
