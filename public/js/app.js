@@ -2340,8 +2340,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      task: {}
+      task: {},
+      oldTask: {
+        title: '',
+        content: '',
+        person_in_change: ''
+      }
     };
+  },
+  watch: {
+    task: function task(newVal, oldVal) {
+      this.oldTask = oldVal;
+    }
   },
   methods: {
     getTask: function getTask() {
@@ -2349,14 +2359,16 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/tasks/' + this.taskId).then(function (res) {
         _this.task = res.data;
+        console.log(_this.oldTask);
       });
     },
     submit: function submit() {
       var _this2 = this;
 
       axios.put('/api/tasks/' + this.taskId, this.task).then(function (res) {
+        console.log(_this2.oldTask);
         axios.post('/api/notices/' + _this2.taskId, {
-          headers: 'edit',
+          headers: _this2.oldTask,
           data: _this2.task
         }).then(function (res) {
           _this2.$router.push({

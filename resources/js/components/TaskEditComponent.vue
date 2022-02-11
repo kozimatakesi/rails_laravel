@@ -29,11 +29,21 @@
  <script>
      export default {
          props: {
-             taskId: Number
+             taskId: Number,
          },
-        data: function () {
+        data () {
             return {
-                task: {}
+                task: {},
+                oldTask: {
+                    title: '',
+                    content: '',
+                    person_in_change: ''
+                },
+            }
+        },
+        watch: {
+            task: function(newVal, oldVal) {
+                this.oldTask = oldVal;
             }
         },
         methods: {
@@ -41,13 +51,15 @@
                 axios.get('/api/tasks/' + this.taskId)
                     .then((res) => {
                         this.task = res.data;
+                        console.log(this.oldTask);
                     });
             },
             submit() {
                 axios.put('/api/tasks/' + this.taskId, this.task)
                     .then((res) => {
+                        console.log(this.oldTask);
                         axios.post('/api/notices/' + this.taskId, {
-                                    headers: 'edit',
+                                    headers: this.oldTask,
                                     data: this.task
                                 })
                                 .then((res) => {

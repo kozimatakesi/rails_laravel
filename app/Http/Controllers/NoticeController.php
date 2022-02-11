@@ -15,6 +15,7 @@ class NoticeController extends Controller
 
     public function store(Request $request,Task $task) {
         $data = $request->all();
+        Log::debug(print_r($data['headers'], true));
         $user = \Auth::user();
         if($data['data']['caution'] == '2') {
             $caution = '削除依頼のあったタスクを';
@@ -22,10 +23,10 @@ class NoticeController extends Controller
             $caution = null;
         }
 
-        if($data['headers'] == 'edit') {
-            $comment = $caution.'更新しました';
-        } else {
+        if($data['headers'] == 'delete') {
             $comment = $caution.'削除しました';
+        } else {
+            $comment = $caution.'更新しました';
         }
         $noticeData = ([
             'user_id' => $user['id'],
