@@ -16,10 +16,15 @@ class NoticeController extends Controller
     public function store(Request $request,Task $task) {
         $data = $request->all();
         $user = \Auth::user();
+        if($data['headers'] == 'edit') {
+            $comment = '更新しました';
+        } else {
+            $comment = '削除しました';
+        }
         $noticeData = ([
             'user_id' => $user['id'],
-            'content_id' => $data['id'],
-            'notice' => '削除しました',
+            'content_id' => $data['data']['id'],
+            'notice' => $comment,
         ]);
         Notice::create($noticeData);
     }

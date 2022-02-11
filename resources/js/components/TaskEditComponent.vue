@@ -47,7 +47,10 @@
                 axios.put('/api/tasks/' + this.taskId, this.task)
                     .then((res) => {
                         console.log(res);
-                        axios.post('/api/notices/' + this.taskId , this.task)
+                        axios.post('/api/notices/' + this.taskId, {
+                                headers: 'edit',
+                                data: this.task
+                                })
                                 .then((res) => {
                                     this.$router.push({name: 'task.list'})
                                 })

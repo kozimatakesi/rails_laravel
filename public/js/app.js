@@ -2352,7 +2352,10 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.put('/api/tasks/' + this.taskId, this.task).then(function (res) {
         console.log(res);
-        axios.post('/api/notices/' + _this2.taskId, _this2.task).then(function (res) {
+        axios.post('/api/notices/' + _this2.taskId, {
+          headers: 'edit',
+          data: _this2.task
+        }).then(function (res) {
           _this2.$router.push({
             name: 'task.list'
           });
@@ -2451,7 +2454,10 @@ __webpack_require__.r(__webpack_exports__);
         axios["delete"]('/api/tasks/' + task.id, task).then(function (res) {
           console.log(res);
           console.log(task);
-          axios.post('/api/notices/' + task.id, task).then(function (res) {
+          axios.post('/api/notices/' + task.id, {
+            headers: 'delete',
+            data: task
+          }).then(function (res) {
             _this2.getTasks();
           });
         });
