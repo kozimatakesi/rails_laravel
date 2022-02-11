@@ -4,6 +4,9 @@
             <nav class="navbar navbar-dark">
                 <span class="navbar-brand mb-0 h1">Vue Laravel SPA</span>
                 <div v-if="isLogin">
+                    <router-link v-bind:to="{name: 'notice'}">
+                        <button v-if="adminCheck == 1" class="btn btn-success">Notices</button>
+                    </router-link>
                     <router-link v-bind:to="{name: 'task.list'}">
                         <button class="btn btn-success">List</button>
                     </router-link>
@@ -29,10 +32,13 @@
     export default {
         computed: {
             isLogin () {
-            return this.$store.getters['auth/check']
+                return this.$store.getters['auth/check']
             },
             username () {
-            return this.$store.getters['auth/username']
+                return this.$store.getters['auth/username']
+            },
+            adminCheck () {
+                return this.$store.getters['auth/adminCheck']
             }
         },
         methods: {

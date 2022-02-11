@@ -1986,6 +1986,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     isLogin: function isLogin() {
@@ -1993,6 +1996,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     username: function username() {
       return this.$store.getters['auth/username'];
+    },
+    adminCheck: function adminCheck() {
+      return this.$store.getters['auth/adminCheck'];
     }
   },
   methods: {
@@ -2351,7 +2357,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.put('/api/tasks/' + this.taskId, this.task).then(function (res) {
-        console.log(res);
         axios.post('/api/notices/' + _this2.taskId, {
           headers: 'edit',
           data: _this2.task
@@ -2452,8 +2457,6 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       } else {
         axios["delete"]('/api/tasks/' + task.id, task).then(function (res) {
-          console.log(res);
-          console.log(task);
           axios.post('/api/notices/' + task.id, {
             headers: 'delete',
             data: task
@@ -38937,6 +38940,14 @@ var render = function () {
           ? _c(
               "div",
               [
+                _c("router-link", { attrs: { to: { name: "notice" } } }, [
+                  _vm.adminCheck == 1
+                    ? _c("button", { staticClass: "btn btn-success" }, [
+                        _vm._v("Notices"),
+                      ])
+                    : _vm._e(),
+                ]),
+                _vm._v(" "),
                 _c("router-link", { attrs: { to: { name: "task.list" } } }, [
                   _c("button", { staticClass: "btn btn-success" }, [
                     _vm._v("List"),
@@ -57460,7 +57471,14 @@ var routes = [{
 }, {
   path: '/notice',
   name: 'notice',
-  component: _components_NoticeComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
+  component: _components_NoticeComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
+  beforeEnter: function beforeEnter(to, from, next) {
+    if (_store__WEBPACK_IMPORTED_MODULE_8__["default"].getters['auth/adminCheck']) {
+      next('/tasks');
+    } else {
+      next();
+    }
+  }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',

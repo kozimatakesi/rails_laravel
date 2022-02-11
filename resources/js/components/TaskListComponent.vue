@@ -70,8 +70,6 @@
                 } else {
                     axios.delete('/api/tasks/' + task.id, task )
                         .then((res) => {
-                            console.log(res);
-                            console.log(task);
                             axios.post('/api/notices/' + task.id, {
                                     headers: 'delete',
                                     data: task
@@ -79,7 +77,7 @@
                                 .then((res) => {
                                     this.getTasks();
                                 })
-                    });
+                        });
 
                     window.alert(`id:${task.id}を削除しました`);
                 }
