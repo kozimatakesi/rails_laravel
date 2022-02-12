@@ -14,7 +14,7 @@
              </tr>
              </thead>
              <tbody>
-                <tr v-for="(task, index) in tasks" :key="index">
+                <tr v-for="(task, index) in tasks" :key="index" v-bind:class="[task.caution == 2 ? 'bg-warning' : '']">
                     <th scope="row">{{ task.id }}</th>
                     <td>{{ task.title }}</td>
                     <td>{{ task.content }}</td>
@@ -35,10 +35,9 @@
                     <td v-if="adminCheck == 1">
                         <button class="btn btn-danger" v-on:click="cautionTask(task)">Caution</button>
                     </td>
-                    <div v-if="task.caution == 2" class="bg-danger">
-                        管理者から<br>
-                        削除依頼が来ています
-                    </div>
+                    <td v-if="task.caution == 2" class="bg-danger align-items-center w-5">
+                        管理者から削除依頼が来ています
+                    </td>
                 </tr>
              </tbody>
          </table>

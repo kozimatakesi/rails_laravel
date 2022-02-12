@@ -2430,7 +2430,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -39785,97 +39784,103 @@ var render = function () {
       _c(
         "tbody",
         _vm._l(_vm.tasks, function (task, index) {
-          return _c("tr", { key: index }, [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(task.id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(task.title))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(task.content))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(task.person_in_change))]),
-            _vm._v(" "),
-            _c(
-              "td",
-              [
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: { name: "task.show", params: { taskId: task.id } },
-                    },
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-primary" }, [
-                      _vm._v("Show"),
-                    ]),
-                  ]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "td",
-              [
-                _c(
-                  "router-link",
-                  {
-                    attrs: {
-                      to: { name: "task.edit", params: { taskId: task.id } },
-                    },
-                  },
-                  [
-                    _c("button", { staticClass: "btn btn-success" }, [
-                      _vm._v("Edit"),
-                    ]),
-                  ]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("td", [
+          return _c(
+            "tr",
+            { key: index, class: [task.caution == 2 ? "bg-warning" : ""] },
+            [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(task.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(task.title))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(task.content))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(task.person_in_change))]),
+              _vm._v(" "),
               _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger",
-                  on: {
-                    click: function ($event) {
-                      return _vm.deleteTask(task)
-                    },
-                  },
-                },
-                [_vm._v("Delete")]
-              ),
-            ]),
-            _vm._v(" "),
-            _vm.adminCheck == 1
-              ? _c("td", [
+                "td",
+                [
                   _c(
-                    "button",
+                    "router-link",
                     {
-                      staticClass: "btn btn-danger",
-                      on: {
-                        click: function ($event) {
-                          return _vm.cautionTask(task)
-                        },
+                      attrs: {
+                        to: { name: "task.show", params: { taskId: task.id } },
                       },
                     },
-                    [_vm._v("Caution")]
+                    [
+                      _c("button", { staticClass: "btn btn-primary" }, [
+                        _vm._v("Show"),
+                      ]),
+                    ]
                   ),
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            task.caution == 2
-              ? _c("div", { staticClass: "bg-danger" }, [
-                  _vm._v("\n                    管理者から"),
-                  _c("br"),
-                  _vm._v(
-                    "\n                    削除依頼が来ています\n                "
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: { name: "task.edit", params: { taskId: task.id } },
+                      },
+                    },
+                    [
+                      _c("button", { staticClass: "btn btn-success" }, [
+                        _vm._v("Edit"),
+                      ]),
+                    ]
                   ),
-                ])
-              : _vm._e(),
-          ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function ($event) {
+                        return _vm.deleteTask(task)
+                      },
+                    },
+                  },
+                  [_vm._v("Delete")]
+                ),
+              ]),
+              _vm._v(" "),
+              _vm.adminCheck == 1
+                ? _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function ($event) {
+                            return _vm.cautionTask(task)
+                          },
+                        },
+                      },
+                      [_vm._v("Caution")]
+                    ),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              task.caution == 2
+                ? _c(
+                    "td",
+                    { staticClass: "bg-danger align-items-center w-5" },
+                    [
+                      _vm._v(
+                        "\n                    管理者から削除依頼が来ています\n                "
+                      ),
+                    ]
+                  )
+                : _vm._e(),
+            ]
+          )
         }),
         0
       ),
