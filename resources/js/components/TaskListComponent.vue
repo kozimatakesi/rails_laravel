@@ -10,6 +10,7 @@
                  <th scope="col">Show</th>
                  <th scope="col">Edit</th>
                  <th scope="col">Delete</th>
+                 <th scope="col" v-if="adminCheck == 1">Caution</th>
              </tr>
              </thead>
              <tbody>
