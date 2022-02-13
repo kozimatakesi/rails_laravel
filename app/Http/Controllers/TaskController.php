@@ -14,9 +14,9 @@ class TaskController extends Controller
         $user = \Auth::user();
         // カラムadminが1の時(管理者権限)は全てのタスクを表示、それ以外は自分のタスクのみを表示
         if($user['admin'] == '1') {
-            return Task::where('status',1)->get();
+            return Task::where('status',1)->latest('id')->get();
         } else {
-            return Task::where('status',1)->where('user_id', $user['id'])->get();
+            return Task::where('status',1)->where('user_id', $user['id'])->latest('id')->get();
         }
     }
 
