@@ -27,13 +27,13 @@ class NoticeController extends Controller
             $comment = $caution.'削除しました';
         } else {
             $caution = $caution.'更新しました';
-            $content = 'content: '.$data['headers']['content'];
+            $content = $data['headers']['title'];
             $comment = $caution.$content;
         }
         $noticeData = ([
             'user_id' => $user['id'],
             'content_id' => $data['data']['id'],
-            'notice' => $comment,
+            'notice' => $comment.'から'.$data['data']['title'].'に変更しました',
         ]);
         Notice::create($noticeData);
     }

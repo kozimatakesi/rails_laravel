@@ -2346,6 +2346,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     taskId: Number
@@ -2353,7 +2359,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       task: {},
-      oldTask: {}
+      oldTaskTitle: '',
+      oldTaskContent: '',
+      oldTaskPersonInChange: ''
     };
   },
   methods: {
@@ -2362,7 +2370,9 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/tasks/' + this.taskId).then(function (res) {
         _this.task = res.data;
-        _this.oldTask = res.data;
+        _this.oldTaskTitle = res.data.title;
+        _this.oldTaskContent = res.data.content;
+        _this.oldTaskPersonInChange = res.data.person_in_change;
       });
     },
     submit: function submit() {
@@ -2370,7 +2380,11 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.put('/api/tasks/' + this.taskId, this.task).then(function (res) {
         axios.post('/api/notices/' + _this2.taskId, {
-          headers: _this2.oldTask,
+          headers: {
+            title: _this2.oldTaskTitle,
+            content: _this2.oldTaskContent,
+            person_in_change: _this2.oldTaskPersonInChange
+          },
           data: _this2.task
         }).then(function (res) {
           _this2.$router.push({
@@ -39670,6 +39684,21 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("input", {
+                staticClass: "col-sm-9 form-control",
+                attrs: { type: "text", readonly: "", id: "title" },
+                domProps: { value: _vm.oldTaskTitle },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-3 col-form-label",
+                  attrs: { for: "title" },
+                },
+                [_vm._v("Update title")]
+              ),
+              _vm._v(" "),
+              _c("input", {
                 directives: [
                   {
                     name: "model",
@@ -39703,6 +39732,21 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("input", {
+                staticClass: "col-sm-9 form-control",
+                attrs: { type: "text", readonly: "", id: "content" },
+                domProps: { value: _vm.oldTaskContent },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-3 col-form-label",
+                  attrs: { for: "title" },
+                },
+                [_vm._v("Update content")]
+              ),
+              _vm._v(" "),
+              _c("input", {
                 directives: [
                   {
                     name: "model",
@@ -39733,6 +39777,21 @@ var render = function () {
                   attrs: { for: "person-in-change" },
                 },
                 [_vm._v("Person In Charge")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "col-sm-9 form-control",
+                attrs: { type: "text", readonly: "", id: "person-in-change" },
+                domProps: { value: _vm.oldTaskPersonInChange },
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-3 col-form-label",
+                  attrs: { for: "title" },
+                },
+                [_vm._v("Update person_in_change")]
               ),
               _vm._v(" "),
               _c("input", {
