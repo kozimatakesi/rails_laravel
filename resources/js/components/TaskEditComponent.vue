@@ -19,7 +19,8 @@
                          <label for="person-in-change" class="col-sm-3 col-form-label">Person In Charge</label>
                          <input type="text" class="col-sm-9 form-control" id="person-in-change" v-model="task.person_in_change">
                      </div>
-                     <button type="submit" class="btn btn-primary">更新</button>
+                     <button
+                        type="submit" class="btn btn-primary">更新</button>
                  </form>
              </div>
          </div>

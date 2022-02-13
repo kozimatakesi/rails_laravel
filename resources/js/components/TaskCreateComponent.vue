@@ -15,7 +15,11 @@
                          <label for="person-in-change" class="col-sm-3 col-form-label">Person In Charge</label>
                          <input type="text" class="col-sm-9 form-control" id="person-in-change" v-model="task.person_in_change">
                      </div>
-                     <button type="submit" class="btn btn-primary">Submit</button>
+                     <button
+                        type="submit" class="btn btn-primary"
+                        v-if="validate"
+                    >Submit</button>
+                    <button v-else class="btn btn-primary" disabled>Submit</button>
                  </form>
                  <ul v-if="errors" class="error">
                      <li v-for="(error, index) in errors" :key="index">{{ error[0] }}</li>
@@ -50,6 +54,13 @@
             },
             userid () {
                 return this.$store.getters['auth/userid'];
+            },
+            validate() {
+                if(!this.task.title || !this.task.content || !this.task.person_in_change || this.task.title.length > 5){
+                    return false;
+                } else {
+                    return true;
+                }
             }
         },
 

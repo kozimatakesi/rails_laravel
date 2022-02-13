@@ -2265,6 +2265,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2291,6 +2295,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     userid: function userid() {
       return this.$store.getters['auth/userid'];
+    },
+    validate: function validate() {
+      if (!this.task.title || !this.task.content || !this.task.person_in_change || this.task.title.length > 5) {
+        return false;
+      } else {
+        return true;
+      }
     }
   }
 });
@@ -2306,6 +2317,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -39550,11 +39562,17 @@ var render = function () {
               }),
             ]),
             _vm._v(" "),
-            _c(
-              "button",
-              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-              [_vm._v("Submit")]
-            ),
+            _vm.validate
+              ? _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+                  [_vm._v("Submit")]
+                )
+              : _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { disabled: "" } },
+                  [_vm._v("Submit")]
+                ),
           ]
         ),
         _vm._v(" "),
