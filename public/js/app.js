@@ -2430,10 +2430,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tasks: []
+      tasks: [],
+      mounth: null
     };
   },
   computed: {
@@ -2467,6 +2476,10 @@ __webpack_require__.r(__webpack_exports__);
         window.alert("id:".concat(task.id, "\u3092\u524A\u9664\u3057\u307E\u3057\u305F"));
       }
     },
+    mounthList: function mounthList(i) {
+      this.mounth = i;
+      console.log(this.mounth);
+    },
     cautionTask: function cautionTask(task) {
       var _this3 = this;
 
@@ -2474,6 +2487,9 @@ __webpack_require__.r(__webpack_exports__);
       axios.put('/api/tasks/' + task.id + '/caution', task).then(function (res) {
         _this3.getTasks();
       });
+    },
+    getMounth: function getMounth(created_at) {
+      return created_at.substr(5, 2);
     }
   },
   mounted: function mounted() {
@@ -39757,135 +39773,185 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("table", { staticClass: "table table-hover" }, [
-      _c("thead", { staticClass: "thead-light" }, [
-        _c("tr", [
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Content")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Person In Charge")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Show")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")]),
-          _vm._v(" "),
-          _vm.adminCheck == 1
-            ? _c("th", { attrs: { scope: "col" } }, [_vm._v("Caution")])
-            : _vm._e(),
-        ]),
-      ]),
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _vm._l(12, function (i, index) {
+        return _c(
+          "button",
+          {
+            key: index,
+            staticClass: "btn btn-success mr-1",
+            on: {
+              click: function ($event) {
+                return _vm.mounthList(i)
+              },
+            },
+          },
+          [_vm._v(_vm._s(i) + "月")]
+        )
+      }),
       _vm._v(" "),
       _c(
-        "tbody",
-        _vm._l(_vm.tasks, function (task, index) {
-          return _c(
-            "tr",
-            { key: index, class: [task.caution == 2 ? "bg-warning" : ""] },
-            [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(task.id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(task.title))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(task.content))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(task.person_in_change))]),
-              _vm._v(" "),
-              _c(
-                "td",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        to: { name: "task.show", params: { taskId: task.id } },
-                      },
-                    },
-                    [
-                      _c("button", { staticClass: "btn btn-primary" }, [
-                        _vm._v("Show"),
-                      ]),
-                    ]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "td",
-                [
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        to: { name: "task.edit", params: { taskId: task.id } },
-                      },
-                    },
-                    [
-                      _c("button", { staticClass: "btn btn-success" }, [
-                        _vm._v("Edit"),
-                      ]),
-                    ]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
+        "button",
+        {
+          staticClass: "btn btn-success mr-1",
+          on: {
+            click: function ($event) {
+              return _vm.mounthList(null)
+            },
+          },
+        },
+        [_vm._v("ALL")]
+      ),
+      _vm._v(" "),
+      _c("table", { staticClass: "table table-hover" }, [
+        _c("thead", { staticClass: "thead-light" }, [
+          _c("tr", [
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("Content")]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("Person In Charge")]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("Show")]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
+            _vm._v(" "),
+            _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")]),
+            _vm._v(" "),
+            _vm.adminCheck == 1
+              ? _c("th", { attrs: { scope: "col" } }, [_vm._v("Caution")])
+              : _vm._e(),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.tasks, function (task, index) {
+            return _vm.mounth == null ||
+              _vm.mounth == _vm.getMounth(task.created_at)
+              ? _c(
+                  "tr",
                   {
-                    staticClass: "btn btn-danger",
-                    on: {
-                      click: function ($event) {
-                        return _vm.deleteTask(task)
-                      },
-                    },
+                    key: index,
+                    class: [task.caution == 2 ? "bg-warning" : ""],
                   },
-                  [_vm._v("Delete")]
-                ),
-              ]),
-              _vm._v(" "),
-              _vm.adminCheck == 1
-                ? _c("td", [
+                  [
+                    _c("th", { attrs: { scope: "row" } }, [
+                      _vm._v(_vm._s(task.id)),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(task.title))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(task.content))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(task.person_in_change))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.getMounth(task.created_at)))]),
+                    _vm._v(" "),
                     _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        on: {
-                          click: function ($event) {
-                            return _vm.cautionTask(task)
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "task.show",
+                                params: { taskId: task.id },
+                              },
+                            },
+                          },
+                          [
+                            _c("button", { staticClass: "btn btn-primary" }, [
+                              _vm._v("Show"),
+                            ]),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "task.edit",
+                                params: { taskId: task.id },
+                              },
+                            },
+                          },
+                          [
+                            _c("button", { staticClass: "btn btn-success" }, [
+                              _vm._v("Edit"),
+                            ]),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteTask(task)
+                            },
                           },
                         },
-                      },
-                      [_vm._v("Caution")]
-                    ),
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              task.caution == 2
-                ? _c(
-                    "td",
-                    { staticClass: "bg-danger align-items-center w-5" },
-                    [
-                      _vm._v(
-                        "\n                    管理者から削除依頼が来ています\n                "
+                        [_vm._v("Delete")]
                       ),
-                    ]
-                  )
-                : _vm._e(),
-            ]
-          )
-        }),
-        0
-      ),
-    ]),
-  ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.adminCheck == 1
+                      ? _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              on: {
+                                click: function ($event) {
+                                  return _vm.cautionTask(task)
+                                },
+                              },
+                            },
+                            [_vm._v("Caution")]
+                          ),
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    task.caution == 2
+                      ? _c(
+                          "td",
+                          { staticClass: "bg-danger align-items-center w-5" },
+                          [
+                            _vm._v(
+                              "\n                    管理者から削除依頼が来ています\n                "
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
+                  ]
+                )
+              : _vm._e()
+          }),
+          0
+        ),
+      ]),
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
