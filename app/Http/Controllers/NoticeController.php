@@ -22,7 +22,7 @@ class NoticeController extends Controller
         if($data['data']['caution'] == '2') {
             $caution = '削除依頼のあったタスクを';
         }
-
+        // 削除の場合は削除した旨のみ、更新の場合は何から何に変わったかを明記して保存
         if($oldData == 'delete') {
             $comment = $caution.'削除しました';
         } else {

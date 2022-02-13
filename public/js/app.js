@@ -39680,11 +39680,11 @@ var render = function () {
                   staticClass: "col-sm-3 col-form-label",
                   attrs: { for: "title" },
                 },
-                [_vm._v("Title")]
+                [_vm._v("Current Title")]
               ),
               _vm._v(" "),
               _c("input", {
-                staticClass: "col-sm-9 form-control",
+                staticClass: "col-sm-9 form-control-plaintext",
                 attrs: { type: "text", readonly: "", id: "title" },
                 domProps: { value: _vm.oldTaskTitle },
               }),
@@ -39728,11 +39728,11 @@ var render = function () {
                   staticClass: "col-sm-3 col-form-label",
                   attrs: { for: "content" },
                 },
-                [_vm._v("Content")]
+                [_vm._v("Current Content")]
               ),
               _vm._v(" "),
               _c("input", {
-                staticClass: "col-sm-9 form-control",
+                staticClass: "col-sm-9 form-control-plaintext",
                 attrs: { type: "text", readonly: "", id: "content" },
                 domProps: { value: _vm.oldTaskContent },
               }),
@@ -39776,11 +39776,11 @@ var render = function () {
                   staticClass: "col-sm-3 col-form-label",
                   attrs: { for: "person-in-change" },
                 },
-                [_vm._v("Person In Charge")]
+                [_vm._v("Current Person In Charge")]
               ),
               _vm._v(" "),
               _c("input", {
-                staticClass: "col-sm-9 form-control",
+                staticClass: "col-sm-9 form-control-plaintext",
                 attrs: { type: "text", readonly: "", id: "person-in-change" },
                 domProps: { value: _vm.oldTaskPersonInChange },
               }),
