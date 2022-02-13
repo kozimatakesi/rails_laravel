@@ -39412,7 +39412,7 @@ var render = function () {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(notice.content_id))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(notice.notice))]),
+            _c("td", { domProps: { innerHTML: _vm._s(notice.notice) } }),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(notice.updated_at))]),
           ])

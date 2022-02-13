@@ -16,7 +16,7 @@
                     <th>{{ notice.id }}</th>
                     <td>{{ notice.user_id }}</td>
                     <td>{{ notice.content_id }}</td>
-                    <td>{{ notice.notice }}</td>
+                    <td v-html="notice.notice"></td>
                     <td>{{ notice.updated_at }}</td>
                 </tr>
             </tbody>
