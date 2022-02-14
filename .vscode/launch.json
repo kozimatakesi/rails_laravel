@@ -9,8 +9,10 @@
       "type": "php",
       "request": "launch",
       //"url": "http://localhost:8000",
-      "port": 9000,
-      //"webRoot": "${workspaceFolder}"
+      "port": 9001,
+      "pathMappings": {
+        "${workspaceRoot}": "${workspaceRoot}"
+      }
     }
   ]
 }
