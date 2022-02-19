@@ -23,8 +23,11 @@ class Task extends Model
         $query->where('status','=', 1);
         // $query->latest(['id']);
         $obj = $query->get();
-        Log::debug('こここ'.$query->tosql());
         //$all = Task::where('status', 1)->latest('id')->get();
         return $obj;
+    }
+
+    public function user() {
+        return $this->belongsTo('App\User');
     }
 }

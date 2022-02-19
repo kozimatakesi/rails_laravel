@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Log;
 use App\Task;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 
@@ -11,6 +12,7 @@ class TaskController extends Controller
 {
     // タスク一覧を表示するアクション
     public function index() {
+        $test = Task::find(72)->user->email;
         $tasks = new Task;
         $user = \Auth::user();
         // カラムadminが1の時(管理者権限)は全てのタスクを表示、それ以外は自分のタスクのみを表示
